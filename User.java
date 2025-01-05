@@ -52,7 +52,7 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         for(int i=0;i<fCount;i++){
-            if(follows[i]!=null && follows[i].equals(name)){
+            if(follows[i]!=null && follows[i].equalsIgnoreCase(name)){
             return false;
             }
         }

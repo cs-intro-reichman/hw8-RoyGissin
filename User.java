@@ -43,7 +43,7 @@
 
      public boolean follows(String name) {
         for(int i=0;i<fCount;i++){
-            if(follows[i]==name){
+            if(follows[i]!=null && follows[i].equalsIgnoreCase(name)){
                 return true;
             }}
         return false;
@@ -51,11 +51,13 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        if(fCount==maxfCount){
-        return false;
-        }
-        if (follows(name)==true) {
+        for(int i=0;i<fCount;i++){
+            if(follows[i]!=null && follows[i].equals(name)){
             return false;
+            }
+        }
+        if(fCount==follows.length){
+        return false;
         }
         follows[fCount]=name;
         fCount++;
@@ -86,11 +88,15 @@
     public int countMutual(User other) {
         int x=0;
          for(int i=0;i<fCount;i++){
+            if(follows[i]!=null){
             for(int j=0;j<other.fCount;j++){
-                if(follows[i]==other.follows[j]){
+                if(other.follows[j]!=null && follows[i].equals(other.follows[j])){
                     x++;
+                    break;
                 }
             }
+            }
+            
          }
         return x;
     }

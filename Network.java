@@ -130,6 +130,6 @@ public class Network {
             }
         }
        
-       return str.trim();
+       return str;
     }
 }
